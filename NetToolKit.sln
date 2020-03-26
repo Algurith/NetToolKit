@@ -5,9 +5,13 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiRequest", "WebApiRequest\WebApiRequest.csproj", "{06CEC88B-25A8-4F03-A3C0-21DEECBDFBD3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExcelUtility", "ExcelUtility", "{7C012B78-650A-44DB-A2E3-885DB4069B8E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommonUtility", "CommonUtility", "{7C012B78-650A-44DB-A2E3-885DB4069B8E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelHelper", "ExcelHelper\ExcelHelper.csproj", "{AC4FD78A-A3C4-4E2E-8C0D-37FCEE323673}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infratructure", "infratructure", "{77DCD7E7-ED75-4227-A505-D067631ADE47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigHelper", "ConfigHelper\ConfigHelper.csproj", "{CC0ED6D3-93DE-4271-ADD3-122A785F5AED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,12 +27,17 @@ Global
 		{AC4FD78A-A3C4-4E2E-8C0D-37FCEE323673}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC4FD78A-A3C4-4E2E-8C0D-37FCEE323673}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC4FD78A-A3C4-4E2E-8C0D-37FCEE323673}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC0ED6D3-93DE-4271-ADD3-122A785F5AED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC0ED6D3-93DE-4271-ADD3-122A785F5AED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC0ED6D3-93DE-4271-ADD3-122A785F5AED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC0ED6D3-93DE-4271-ADD3-122A785F5AED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AC4FD78A-A3C4-4E2E-8C0D-37FCEE323673} = {7C012B78-650A-44DB-A2E3-885DB4069B8E}
+		{CC0ED6D3-93DE-4271-ADD3-122A785F5AED} = {7C012B78-650A-44DB-A2E3-885DB4069B8E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BF4E0B3E-FFE5-4C13-8A23-3D36FAD18324}
