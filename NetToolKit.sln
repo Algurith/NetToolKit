@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infratructure", "infratruct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigHelper", "ConfigHelper\ConfigHelper.csproj", "{CC0ED6D3-93DE-4271-ADD3-122A785F5AED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelHelperTests", "ExcelHelperTests\ExcelHelperTests.csproj", "{3BD11E41-C9A6-46EE-ACA1-85E9E6BDBDB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{CC0ED6D3-93DE-4271-ADD3-122A785F5AED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC0ED6D3-93DE-4271-ADD3-122A785F5AED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC0ED6D3-93DE-4271-ADD3-122A785F5AED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BD11E41-C9A6-46EE-ACA1-85E9E6BDBDB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BD11E41-C9A6-46EE-ACA1-85E9E6BDBDB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BD11E41-C9A6-46EE-ACA1-85E9E6BDBDB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BD11E41-C9A6-46EE-ACA1-85E9E6BDBDB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

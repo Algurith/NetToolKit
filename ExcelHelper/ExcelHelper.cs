@@ -1,10 +1,14 @@
 ﻿using NPOI.HSSF.UserModel;
 using NPOI.SS.Formula.Eval;
 using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using CellType = NPOI.SS.UserModel.CellType;
 
 namespace ExcelHelper
@@ -19,6 +23,20 @@ namespace ExcelHelper
         /// <returns></returns>
         public static DataTable LoadToDataTable(Stream fileStream) =>
             SheetToDataTable(new HSSFWorkbook(fileStream).GetSheetAt(0));
+
+        public static DataTable LoadToDataTable(string file)
+        {
+            try
+            {
+                IFormulaEvaluator evaluator;
+                return SheetToDataTable(InitializeWorkbook(file, out evaluator).GetSheetAt(0));
+            }
+            catch (Exception)
+            {
+                return LoadFromCsv(file, true,
+                    x => Regex.Replace(string.IsNullOrEmpty(x) ? string.Empty : x, @"\t", ",").Split(','));
+            }
+        }
 
         /// <summary>
         /// Sheet转DataTable
@@ -114,6 +132,87 @@ namespace ExcelHelper
                     //   return "=" + cell.CellFormula;
                     return "";
             }
+        }
+
+        private static IWorkbook InitializeWorkbook(string excelFile, out IFormulaEvaluator evaluator)
+        {
+            using (var file = new FileStream(excelFile, FileMode.Open, FileAccess.Read))
+            {
+                if (string.Equals(file.Name.Split('.').Last(), "xlsx", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    var xssWorkbook = new XSSFWorkbook(file);
+                    evaluator = new XSSFFormulaEvaluator(xssWorkbook);
+                    return xssWorkbook;
+                }
+                var hssWorkbook = new HSSFWorkbook(file);
+                evaluator = new HSSFFormulaEvaluator(hssWorkbook);
+                return hssWorkbook;
+            }
+        }
+
+        private static DataTable LoadFromCsv(string file, bool isRowOneHeader = true, Func<string, string[]> p1 = null)
+        {
+
+            var csvDataTable = new DataTable();
+
+            //no try/catch - add these in yourselfs or let exception happen
+            //String[] csvData = File.ReadAllLines(HttpContext.Current.Server.MapPath(file));
+            var csvData = File.ReadAllLines(file, Encoding.UTF8);
+
+            //if no data in file ‘manually' throw an exception
+            if (csvData.Length == 0)
+            {
+                throw new Exception("CSV File Appears to be Empty");
+            }
+            if (p1 == null)
+            {
+                p1 = x => x.Split(',');
+            }
+            var headings = p1(csvData[0]);
+            var index = 0; //will be zero or one depending on isRowOneHeader
+
+            if (isRowOneHeader) //if first record lists headers
+            {
+                index = 1; //so we won't take headings as data
+
+                //for each heading
+                for (var i = 0; i < headings.Length; i++)
+                {
+                    //replace spaces with underscores for column names
+                    headings[i] = headings[i].Replace(" ", "_");
+
+                    //add a column for each heading
+                    csvDataTable.Columns.Add(headings[i], typeof(string));
+                }
+            }
+            else //if no headers just go for col1, col2 etc.
+            {
+                for (var i = 0; i < headings.Length; i++)
+                {
+                    //create arbitary column names
+                    csvDataTable.Columns.Add("col" + (i + 1), typeof(string));
+                }
+            }
+
+            //populate the DataTable
+            for (var i = index; i < csvData.Length; i++)
+            {
+                //create new rows
+                var row = csvDataTable.NewRow();
+
+                for (var j = 0; j < headings.Length; j++)
+                {
+                    //fill them
+                    row[j] = p1(csvData[i])[j];
+                }
+
+                //add rows to over DataTable
+                csvDataTable.Rows.Add(row);
+            }
+
+            //return the CSV DataTable
+            return csvDataTable;
+
         }
     }
 }
