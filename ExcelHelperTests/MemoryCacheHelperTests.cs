@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using MemoryCacheProvider;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 
@@ -14,8 +15,8 @@ namespace ExcelHelperTests
             var key1 = "key1";
             var key2 = "key2";
             var slidingExpiration = new TimeSpan(0, 3, 0);
-            var data1 = MemoryCacheHelper.MemoryCacheHelper.GetOrSetCacheItem(key1, CreateData);
-            var data2 = MemoryCacheHelper.MemoryCacheHelper.GetOrSetCacheItem(key2, CreateData, slidingExpiration);
+            var data1 = MemoryCacheHelper.GetOrSetCacheItem(key1, CreateData);
+            var data2 = MemoryCacheHelper.GetOrSetCacheItem(key2, CreateData, slidingExpiration);
 
             //GetOrRemoveCacheItemTest();
             //Console.WriteLine($"count1：{data1.Count}， count2：{data2.Count}");
@@ -38,7 +39,7 @@ namespace ExcelHelperTests
         {
             var key = "key2";
 
-            var data = MemoryCacheHelper.MemoryCacheHelper.GetOrRemoveCacheItem<List<string>>(key);
+            var data = MemoryCacheHelper.GetOrRemoveCacheItem<List<string>>(key);
             Console.WriteLine($"count1：{data.Count}");
         }
     }

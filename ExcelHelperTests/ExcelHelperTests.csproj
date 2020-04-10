@@ -69,9 +69,9 @@
       <Project>{AC4FD78A-A3C4-4E2E-8C0D-37FCEE323673}</Project>
       <Name>ExcelHelper</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MemoryCacheHelper\MemoryCacheHelper.csproj">
+    <ProjectReference Include="..\MemoryCacheHelper\MemoryCacheProvider.csproj">
       <Project>{d56e25d4-9af7-4545-9294-12a6a9c7439e}</Project>
-      <Name>MemoryCacheHelper</Name>
+      <Name>MemoryCacheProvider</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

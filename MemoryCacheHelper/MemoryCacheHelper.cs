@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Caching;
 
-namespace MemoryCacheHelper
+namespace MemoryCacheProvider
 {
     /// <summary>
     /// 基于Memory的缓存机制
